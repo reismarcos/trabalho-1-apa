@@ -61,11 +61,11 @@ int Mediana(int arr[], int n)
 }
 
 // Troca dois elementos
-void Troca(int *a, int *b)
+void Troca(int *x, int *y)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    int aux = *x;
+    *x = *y;
+    *y = aux;
 }
 
 // Particiona o vetor usando x como pivot
