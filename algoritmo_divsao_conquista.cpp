@@ -11,7 +11,7 @@ int Mediana(int arr[], int n);
 
 int KMenor(int arr[], int p, int r, int k);
 
-void Troca(int *a, int *b);
+void Troca(int *x, int *y);
 
 // Retorna o Kesimo menor elemento de um vetor dado, em O(n) no pior caso
 int KMenor(int arr[], int p, int r, int k)

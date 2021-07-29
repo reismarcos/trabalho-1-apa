@@ -11,7 +11,7 @@ int Mediana(int arr[], int n);
 
 int SelecionaKMenor(int arr[], int p, int r, int k);
 
-void Troca(int *a, int *b);
+void Troca(int *x, int *y);
 
 void Tempo_CPU_Sistema(double *seg_CPU_total, double *seg_sistema_total)
 {
@@ -98,11 +98,11 @@ int Mediana(int arr[], int n)
 }
 
 // Troca dois elementos de lugar  
-void Troca(int *a, int *b)
+void Troca(int *x, int *y)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    int aux = *x;
+    *x = *y;
+    *y = aux;
 }
 
 // particiona o vetor usando x como pivot
