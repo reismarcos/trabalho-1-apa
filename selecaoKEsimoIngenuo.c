@@ -39,22 +39,40 @@ int SelecionaKMenor(int array[], int k, int tamanho_array){
     return array_k_menores[k-1];
 }
 
-int main()
-{   
-    // int k = 3;
-    // int array[] = {28, 53, 31, 19, 34, 93, 81, 23, 35, 85};
-    int arr[1000000];
+int GeraArray(int arr[], int TAMANHO_ARRAY){   
     int i, j, temp;
     srand(time(NULL));
-    for(i = 0; i< 1000000; i++){
+    for(i = 0; i< TAMANHO_ARRAY; i++){
         arr[i] = i + 1;
     }
-    for(i = 0; i< 1000000; i++){
-        j = (rand()%9 ) + 1;
+    for(i = 0; i< TAMANHO_ARRAY; i++){
+        j = (rand()%(TAMANHO_ARRAY-1)) + 1;
         temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp; 
     }
+    for(i = 0; i< TAMANHO_ARRAY; i++){
+        printf("  %d", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+int main()
+{   
+    int TAMANHO_ARRAY = 10; // Variar
+    int k = 1; // Variar
+
+    int arr[TAMANHO_ARRAY];
+    GeraArray(arr, TAMANHO_ARRAY);
+
+    for(int i=0; i< TAMANHO_ARRAY; i++){
+        printf("  %d", arr[i]);
+    }
+    printf("\n");
+
     int n = sizeof(arr)/sizeof(arr[0]), k = 7652;
     int tamanho_array = sizeof(arr)/sizeof(arr[0]);
     double s_CPU_inicial, s_total_inicial;
@@ -65,4 +83,5 @@ int main()
     Tempo_CPU_Sistema(&s_CPU_final, &s_total_final);
 	printf ("Tempo de CPU total = %f\n", s_CPU_final - s_CPU_inicial);
     return 0;
+
 }
