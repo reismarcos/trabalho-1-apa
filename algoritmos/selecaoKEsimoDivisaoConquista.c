@@ -109,12 +109,14 @@ void Troca(int *x, int *y)
 int Particao(int arr[], int p, int r, int x)
 {
     int i;
+    // Procura por x em arr[p..r] e move para final
     for (i=p; i<r; i++)
         if (arr[i] == x)
            break;
     Troca(&arr[i], &arr[r]);
  
     i = p;
+    // Particiona ao redor de x 
     for (int j = p; j <= r - 1; j++)
     {
         if (arr[j] <= x)
