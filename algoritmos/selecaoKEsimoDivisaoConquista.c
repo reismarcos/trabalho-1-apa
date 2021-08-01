@@ -3,7 +3,7 @@
 #include <math.h>
 #include <sys/resource.h>
 
-#define TAMANHO_PARTICAO 7
+#define TAMANHO_PARTICAO 11
 
 int Particao(int arr[], int p, int r, int k);
 
@@ -48,7 +48,6 @@ void Ordena(int vetor[], int tamanho)
     
 }
 
-
 // Retorna o Kesimo menor elemento de um vetor dado, em O(n) no pior caso
 int SelecionaKMenor(int arr[], int p, int r, int k)
 {   
@@ -58,11 +57,11 @@ int SelecionaKMenor(int arr[], int p, int r, int k)
         // Numero de elementos do vetor atual vetor[p..r]
         int n = r - p + 1;
 
-         // Divide vetor em grupos de tamanho x, calcula mediana de cada um e salva num vetor intermediario
-        int i, medianas[(n+4)/TAMANHO_PARTICAO];
+        // Divide vetor em grupos de tamanho x, calcula mediana de cada um e salva num vetor intermediario
+        int i, medianas[(n+TAMANHO_PARTICAO -1)/TAMANHO_PARTICAO];
         for (i=0; i<n/TAMANHO_PARTICAO; i++)
             medianas[i] = Mediana(arr+p+i*TAMANHO_PARTICAO, TAMANHO_PARTICAO);
-        if (i*5 < n)//Caso o ultimo grupo tenha menos de 5 elementos 
+        if (i*TAMANHO_PARTICAO < n)//Caso o ultimo grupo tenha menos de 5 elementos 
         {
             medianas[i] = Mediana(arr+p+i*TAMANHO_PARTICAO, n%TAMANHO_PARTICAO);
             i++;
@@ -141,10 +140,6 @@ int GeraArray(int arr[], int TAMANHO_ARRAY){
         arr[i] = arr[j];
         arr[j] = temp; 
     }
-    for(i = 0; i< TAMANHO_ARRAY; i++){
-        printf("  %d", arr[i]);
-    }
-    printf("\n");
 
     return 0;
 }
@@ -152,16 +147,11 @@ int GeraArray(int arr[], int TAMANHO_ARRAY){
 
 int main()
 {   
-    int TAMANHO_ARRAY = 10; // Variar
-    int k = 1; // Variar
+    int TAMANHO_ARRAY = 1000; // Variar
+    int k = 567; // Variar
 
     int arr[TAMANHO_ARRAY];
     GeraArray(arr, TAMANHO_ARRAY);
-
-    for(int i=0; i< TAMANHO_ARRAY; i++){
-        printf("  %d", arr[i]);
-    }
-    printf("\n");
 
     int n = sizeof(arr)/sizeof(arr[0]);
     int tamanho_array = sizeof(arr)/sizeof(arr[0]);

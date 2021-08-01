@@ -7,8 +7,8 @@ para v = 0, até k-1, faça:
 	menor = array[index_menor]
 
 	// Encontra o menor	
-para i = 1, até tamanho_array, faça:
-     		se array[i] < menor, faça:
+	para i = 1, até tamanho_array, faça:
+		se array[i] < menor, faça:
 			menor = array[i]
 			index_menor = i;
 		fim se

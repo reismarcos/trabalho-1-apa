@@ -172,7 +172,7 @@
 	<path stroke='black'  d='M130.40,72.01 L130.40,403.20 L566.39,403.20 L566.39,72.01 L130.40,72.01 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(348.39,41.21)" stroke="none" fill="black" font-family="arial" font-size="16.00"  text-anchor="middle">
-		<text><tspan font-family="arial" >K fixo N variando</tspan></text>
+		<text><tspan font-family="arial" >N Fixo K Variando</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
