@@ -41,7 +41,6 @@ int SelecionaKMenor(int array[], int k, int tamanho_array){
 
 int GeraArray(int arr[], int TAMANHO_ARRAY){   
     int i, j, temp;
-    srand(time(NULL));
     for(i = 0; i< TAMANHO_ARRAY; i++){
         arr[i] = i + 1;
     }
@@ -73,7 +72,7 @@ int main()
     }
     printf("\n");
 
-    int n = sizeof(arr)/sizeof(arr[0]), k = 7652;
+    int n = sizeof(arr)/sizeof(arr[0]);
     int tamanho_array = sizeof(arr)/sizeof(arr[0]);
     double s_CPU_inicial, s_total_inicial;
     Tempo_CPU_Sistema(&s_CPU_inicial, &s_total_inicial);

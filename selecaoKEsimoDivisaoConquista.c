@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <sys/resource.h>
-#include <time.h>
 
 #define TAMANHO_PARTICAO 7
 
@@ -29,6 +28,26 @@ void Tempo_CPU_Sistema(double *seg_CPU_total, double *seg_sistema_total)
  *seg_CPU_total     = (seg_CPU + 0.000001 * mseg_CPU);
  *seg_sistema_total = (seg_sistema + 0.000001 * mseg_sistema);
 }
+
+// Metodo de ordenaçao usa insertion sort como descrito no livro cap 9.3.
+// Na verdade o  metodo de ordenaçao nao vai ser tao determinante pois vai sempre ordenar 'q' elementos, sendo 'q' o tamanho do grupo
+void Ordena(int vetor[], int tamanho)
+{
+	int chave;
+    int elemento_anterior;
+	for (int i = 1; i < tamanho; i++) {
+		chave = vetor[i];
+		elemento_anterior = i - 1;
+
+		while (elemento_anterior >= 0 && vetor[elemento_anterior] > chave) {
+			vetor[elemento_anterior + 1] = vetor[elemento_anterior];
+			elemento_anterior = elemento_anterior - 1;
+		}
+		vetor[elemento_anterior + 1] = chave;
+	}
+    
+}
+
 
 // Retorna o Kesimo menor elemento de um vetor dado, em O(n) no pior caso
 int SelecionaKMenor(int arr[], int p, int r, int k)
@@ -66,7 +85,7 @@ int SelecionaKMenor(int arr[], int p, int r, int k)
         return SelecionaKMenor(arr, pos+1, r, k-pos+p-1);
     }
     
-     // Se k for maior do que numero de elementos retorna qualquer coisa
+     // Se k for maior do que numero de elementos retorna erro
     return -1;
 }
 
@@ -74,6 +93,7 @@ int SelecionaKMenor(int arr[], int p, int r, int k)
 // Mediana supoe que a entrada de dados esta ordenada em alguma ordem de crescimento, entao dai surge a necessidade de se ordenar antes
 int Mediana(int arr[], int n)
 {
+    Ordena(arr, n);
     return arr[n/2];
 }
 
@@ -108,27 +128,48 @@ int Particao(int arr[], int p, int r, int x)
 }
 
 
-int main()
-{
-    // int arr[] = {28, 53, 31, 19, 34, 93, 81, 23, 35, 85};
-    int arr[1000000];
+int GeraArray(int arr[], int TAMANHO_ARRAY){   
     int i, j, temp;
-    srand(time(NULL));
-    for(i = 0; i< 1000000; i++){
+    for(i = 0; i< TAMANHO_ARRAY; i++){
         arr[i] = i + 1;
     }
-    for(i = 0; i< 1000000; i++){
-        j = (rand()%9 ) + 1;
+    for(i = 0; i< TAMANHO_ARRAY; i++){
+        j = (rand()%(TAMANHO_ARRAY-1)) + 1;
         temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp; 
     }
-    int n = sizeof(arr)/sizeof(arr[0]), k = 7652;
+    for(i = 0; i< TAMANHO_ARRAY; i++){
+        printf("  %d", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+int main()
+{   
+    int TAMANHO_ARRAY = 10; // Variar
+    int k = 1; // Variar
+
+    int arr[TAMANHO_ARRAY];
+    GeraArray(arr, TAMANHO_ARRAY);
+
+    for(int i=0; i< TAMANHO_ARRAY; i++){
+        printf("  %d", arr[i]);
+    }
+    printf("\n");
+
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int tamanho_array = sizeof(arr)/sizeof(arr[0]);
     double s_CPU_inicial, s_total_inicial;
-	Tempo_CPU_Sistema(&s_CPU_inicial, &s_total_inicial);
-    printf("O K menor elemento é: %d \n", SelecionaKMenor(arr, 0, n-1, k));
+    Tempo_CPU_Sistema(&s_CPU_inicial, &s_total_inicial);
+    int k_menor = SelecionaKMenor(arr, 0, n-1, k);
+    printf("%d\n", k_menor);
     double s_CPU_final, s_total_final;
-	Tempo_CPU_Sistema(&s_CPU_final, &s_total_final);
+    Tempo_CPU_Sistema(&s_CPU_final, &s_total_final);
 	printf ("Tempo de CPU total = %f\n", s_CPU_final - s_CPU_inicial);
     return 0;
+
 }
