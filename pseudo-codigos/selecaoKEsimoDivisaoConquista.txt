@@ -1,0 +1,39 @@
+SelecionaKMenor(array, p, r, k)
+tamanho_array =  r - p + 1
+n_grupos = tamanho_array/TAMANHO_PARTICAO
+medianas= []
+
+se k > 0 e k => tamanho_array, faça:
+para i = 0 até n_grupos , faça:
+	medianas[i] = Mediana(array+p+i*TAMANHO_PARTICAO, TAMANHO_PARTICAO)
+fim para
+
+se i * 5 < tamanho_array, faça:
+	medianas[i] = Mediana(array+p+i*TAMANHO_PARTICAO, tamanho_array mod            TAMANHO_PARTICAO)
+            i = i + 1
+fim se
+
+se i = 1:
+	mediana_final = medianas[i-1]
+se não:
+	SelecionaKMenor(medianas, 0, i-1, i/2)
+fim se
+
+posicao = Particao(array, p, r, mediana_final)
+
+se posicao - p = k -1
+	retorna vetor[posicao]
+fim se
+
+se posicao - p > k - 1
+	retorna SelecionaKMenor(vetor, p, posicao -1, k)
+fim se
+
+retorna SelecionaKMenor(vetor, pos + 1, r, k -pos+p-1)
+
+se não
+retorna Erro
+
+fim se
+
+fim

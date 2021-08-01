@@ -1,0 +1,26 @@
+SelecionaKMenor(array, k, tamanho_array)
+array_k_menores = [] // Lista que irá conter os k menores elementos de array
+index_menor = 0
+
+para v = 0, até k-1, faça:
+	index_menor = 0
+	menor = array[index_menor]
+
+	// Encontra o menor	
+para i = 1, até tamanho_array, faça:
+     		se array[i] < menor, faça:
+			menor = array[i]
+			index_menor = i;
+		fim se
+	fim para
+
+	// Remove o menor da lista
+	para j = index_menor, até tamanho_array-1, faça:
+		array[j] = array[j+1]
+	fim para
+
+	tamanho_array = tamanho_array - 1
+	array_k_menores[v] = menor
+fim para
+retorna array_k_menores[k-1]
+fim
